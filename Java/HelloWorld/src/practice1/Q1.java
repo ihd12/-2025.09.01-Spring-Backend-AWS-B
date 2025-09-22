@@ -10,11 +10,11 @@ public class Q1 {
 //		클래스를 이용하라. [난이도 하]
 //		두 정수를 입력하세요>>10 20
 //		10+20은 30
-		Scanner sc = new Scanner(System.in); 
+		Scanner sc = new Scanner(System.in);
 		System.out.print("두 정수를 입력하세요>>");
-		int num1 = sc.nextInt();
-		int num2 = sc.nextInt();
-		System.out.println(num1+"+"+num2+"은 "+(num1+num2));
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		System.out.println(a+"+"+b+"은 "+(a+b));
 	}
 
 }
