@@ -43,7 +43,7 @@ public class Ex02_Switch {
 		// 1,3,5,7,8,10,12 = 31일
 		// 4,6,9,11 = 30일
 		// 2 = 29일, 윤년인 경우 28일
-		System.out.print("몇월인지 입력해주세요.");
+		System.out.print("몇월인지 입력해주세요.>>");
 		int month = sc.nextInt();
 		switch(month) {
 			case 1:case 3:case 5:case 7:case 8:case 10:case 12:

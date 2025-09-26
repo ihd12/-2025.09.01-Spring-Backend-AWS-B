@@ -35,18 +35,18 @@ public class Ex05_for2 {
 //		for(;;) {
 //			System.out.println("무한반복");
 //		}
-//		Scanner sc = new Scanner(System.in);
-//		while(true) {
-//			System.out.print("가위,바위,보 중에 입력해주세요. ");
-//			System.out.println("종료를 입력하면 게임이 종료됩니다.>>");
-//			String player = sc.next();
-//			if(player.equals("종료")) {
-//				System.out.println("가위바위보 게임을 종료했습니다.");
-//				break; // 반복문을 종료 시키는 코드
-//			}
-//			System.out.println("당신은 "+player + "를 냈습니다.");
-//			 
-//		}
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+			System.out.print("가위,바위,보 중에 입력해주세요. ");
+			System.out.println("종료를 입력하면 게임이 종료됩니다.>>");
+			String player = sc.next();
+			if(player.equals("종료")) {
+				System.out.println("가위바위보 게임을 종료했습니다.");
+				break; // 반복문을 종료 시키는 코드
+			}
+			System.out.println("당신은 "+player + "를 냈습니다.");
+			 
+		}
 		// 반복문에서 사용하는 continue문
 		for(i=0; i<20; i++) {
 			if(i%5==0) {
