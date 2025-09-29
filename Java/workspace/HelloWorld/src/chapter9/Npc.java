@@ -38,13 +38,32 @@ public class Npc {
 		this.phone = phone;
 	}
 	
-//	자기소개를 출력하는 메서드
+	public Npc(String name, int hp, String adress, String phone, int age, String privateData) {
+		super();
+		this.name = name;
+		this.hp = hp;
+		this.adress = adress;
+		this.phone = phone;
+		this.age = age;
+		this.privateData = privateData;
+	}
+	//	자기소개를 출력하는 메서드
 	void say() {
+		System.out.println("안녕하세요. 저는 "+name+" 입니다.");
+	}
+	void say(int a) {
+		System.out.println("안녕하세요. 저는 "+name+" 입니다.");
+	}
+	void say(String a) {
+		System.out.println(name);
+		System.out.println(hp);
+		System.out.println(adress);
 		System.out.println("안녕하세요. 저는 "+name+" 입니다.");
 	}
 	// hp 멤버 변수의 데이터를 변경하는 메서드
 	void setHp(int hpData) {
 		hp = hpData;
+		say();
 	}
 }
 

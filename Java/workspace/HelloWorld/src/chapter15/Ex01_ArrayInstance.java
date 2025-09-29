@@ -45,6 +45,7 @@ public class Ex01_ArrayInstance {
 		}
 		System.out.println();
 //		배열을 사용하는 향상된 for문(for each문)
+		//for(배열의자료형 배열데이터변수이름 : 배열이름) { 실행할코드; }
 		for(int i:intArr2) {
 			System.out.print(i+" ");
 		}

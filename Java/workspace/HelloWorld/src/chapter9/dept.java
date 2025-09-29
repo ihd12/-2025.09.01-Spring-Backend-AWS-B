@@ -12,6 +12,7 @@ public class dept {
 	// 2. Generate Getters and Setters 열기
 	// 3. getter와setter를 생성할 멤버변수를 체크
 	// 4. Generate버튼으로 생성
+	
 	public int getDeptno() {
 		return deptno;
 	}
