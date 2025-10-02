@@ -11,17 +11,12 @@ public class Q1 {
 //		요. 
 		int[] intArr = new int[5];
 		Scanner sc = new Scanner(System.in);
-		System.out.println("숫자 5개를 입력해주세요>>");
-//		intArr[0] = sc.nextInt();
-//		intArr[1] = sc.nextInt();
-//		intArr[2] = sc.nextInt();
-//		intArr[3] = sc.nextInt();
-//		intArr[4] = sc.nextInt();
+		System.out.println("배열에 저장할 숫자를 입력해주세요>>");
 		for(int i=0; i<intArr.length; i++) {
 			intArr[i] = sc.nextInt();
 		}
 		for(int i : intArr) {
-			System.out.println(i);
+			System.out.print(i + ",");
 		}
 	}
 

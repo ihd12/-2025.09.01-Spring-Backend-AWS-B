@@ -10,17 +10,21 @@ public class Q3 {
 //		학생 점수가 들어있는 배열이 주어질 때, 점수들의 합과 평균을 구하세요.
 		int[] studentArr = {100,50,70,90,100,60,30,10,50};
 		int sum = 0;
+		double avg = 0.0;
 		for(int i:studentArr) {
-			sum+=i;
+//			sum = sum + i;
+			sum += i;
 		}
-		int avg = sum/studentArr.length;
+		avg = sum / studentArr.length;
 		System.out.println("합계:"+sum);
 		System.out.println("평균:"+avg);
-//		stream 사용
+		// stream을 이용한 총합 구하기
 		sum = Arrays.stream(studentArr).sum();
-		double avg1 = Arrays.stream(studentArr).average().getAsDouble();
+		// stream을 이용한 평균 구하기
+		avg = Arrays.stream(studentArr).average().getAsDouble();
 		System.out.println("합계:"+sum);
-		System.out.println("평균:"+avg1);
+		System.out.println("평균:"+avg);
+		
 	}
 
 }
