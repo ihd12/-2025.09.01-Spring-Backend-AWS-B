@@ -4,6 +4,9 @@ public class Ex11_PartiallyFilled {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+//		[0][0], 
+//		[1][0],[1][1],
+//		[2][0],[2][1],[2][2],
 		int [][] arr = {
 				{11},
 				{22,33},

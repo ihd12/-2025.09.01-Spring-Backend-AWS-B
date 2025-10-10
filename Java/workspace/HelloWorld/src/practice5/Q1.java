@@ -1,9 +1,16 @@
 package practice5;
 
 class Song{
+	// title필드
 	String title;
 	// 생성자
+	Song(String title){
+		this.title = title;
+	}
 	// getTitle()
+	public String getTitle() {
+		return title;
+	}
 }
 
 public class Q1 {

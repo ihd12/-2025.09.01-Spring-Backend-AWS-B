@@ -49,6 +49,9 @@ public class Ex01_ArrayInstance {
 		for(int i:intArr2) {
 			System.out.print(i+" ");
 		}
+		for(String str : strArr) {
+			System.out.print(str+" ");
+		}
 	}
 
 }

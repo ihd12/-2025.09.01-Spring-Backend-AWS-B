@@ -16,12 +16,13 @@ public class Q1 {
 //		e
 //		Scanner로 문자를 읽을 때 다음과 같이 하면 된다.
 		Scanner sc = new Scanner(System.in);
-		System.out.print("알파벳을 입력해주세요>>");
-		String s = sc.next(); // 문자열로 읽음
-		char c = s.charAt(0); // 문자열의 첫 번째 문자
-		for(char i='a'; i<=c; i++) {
-			for(char j='a'; j<=c; j++) {
-				System.out.print(j);
+		System.out.print("알파벳 한 문자를 입력하세요>>");
+		String str = sc.next();
+		char ch = str.charAt(0);
+//		소문자 a는 숫자 97로 저장됨, 숫자이기 때문에 반복의 변수로 사용 가능
+		for(char a='a'; a<=ch; a++) {
+			for(char num=a; num<=ch; num++) {
+				System.out.print(num);
 			}
 			System.out.println();
 		}
