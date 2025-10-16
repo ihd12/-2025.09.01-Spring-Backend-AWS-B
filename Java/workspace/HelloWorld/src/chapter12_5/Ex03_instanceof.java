@@ -20,8 +20,8 @@ public class Ex03_instanceof {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-//		Cry test1 = new Cat();
-		Cry test1 = new Dog();
+		Cry test1 = new Cat();
+//		Cry test1 = new Dog();
 		if(test1 instanceof Cat) {
 			test1.cry();
 		}else if(test1 instanceof Dog) {

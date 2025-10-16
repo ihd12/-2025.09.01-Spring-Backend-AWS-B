@@ -21,7 +21,22 @@ class Point {
 		this.y = y;
 	}
 }
-
+class ColorPoint extends Point{
+	private String color;
+	public ColorPoint(int x, int y, String color) {
+		super(x,y);
+		this.color = color;
+	}
+	void setPoint(int x, int y) {
+		move(x,y);
+	}
+	void setColor(String color) {
+		this.color = color;
+	}
+	void show() {
+		System.out.println(color+"색으로("+getX()+", "+getY()+")");
+	}
+}
 public class Q4 {
 
 	public static void main(String[] args) {
@@ -33,6 +48,17 @@ public class Q4 {
 		cp.setPoint(10, 20);
 		cp.setColor("GREEN");
 		cp.show();
+//		GREEN색으로(10, 20)
 	}
 
 }
+
+
+
+
+
+
+
+
+
+

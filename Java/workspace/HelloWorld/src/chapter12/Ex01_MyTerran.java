@@ -95,8 +95,8 @@ public class Ex01_MyTerran {
 		// attack변수는 Marine클래스에서 선언하여 사용
 		unit1.attack=20;
 		unit1.doMove();
-		unit1.printMarine();
 		unit1.printUnit();
+		unit1.printMarine();
 		
 		Medic unit2 = new Medic("메딕",120,100,5);
 		// attack변수는 Marine클래스에서 선언하여 사용

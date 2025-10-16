@@ -14,10 +14,12 @@ interface Talk{
 // 자식클래스에 implements를 작성 후 인터페이스 이름을 작성
 class Morning implements Greet, Talk{
 //	추상메서드를 실제로 구현하여야 에러가 발생하지 않음
+	@Override
 	public void greet() {
 		System.out.println("안녕하세요");
 	}
-//	인터페이스 여러개 상속 받았다면 상속받은 모든 추상메서드를 구현해야함 
+//	인터페이스 여러개 상속 받았다면 상속받은 모든 추상메서드를 구현해야함
+	@Override
 	public void talk() {
 		System.out.println("날씨 좋네요");
 	}
