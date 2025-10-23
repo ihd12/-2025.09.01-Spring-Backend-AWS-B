@@ -22,7 +22,7 @@ class Human implements Unit{
 	}
 }
 public class Ex04_Annotation {
-
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Unit unit = new Human();
