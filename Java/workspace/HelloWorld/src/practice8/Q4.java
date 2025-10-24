@@ -57,6 +57,7 @@ public class Q4 {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("학생이름, 학과, 학번, 학점을 입력하세요.");
 		for(int i=0; i<5; i++) {
+			System.out.print(">>");
 			String name = sc.next();
 			String dept = sc.next();
 			int sno = sc.nextInt();
@@ -77,15 +78,21 @@ public class Q4 {
 			if(name.equals("그만")) {
 				break;
 			}
+			boolean flag = false;
 			for(Student student:studentList) {
 				if(name.equals(student.getName())){
 					System.out.println(student.getName()
 							+","+student.getDept()
 							+","+student.getSno()
 							+","+student.getScore());
+					flag = true;
 				}
 			}
+			if(flag == false) {
+				System.out.println("해당 학생이 없습니다.");
+			}
 		}
+		System.out.println("프로그램이 종료됩니다.");
 //		(2) ArrayList<Student> 대신, HashMap<String, Student> 해시맵을 이용하여 다시 작성하라. 해시
 //		맵의 키(key)는 학생이름으로 한다.
 
