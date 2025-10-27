@@ -1,6 +1,8 @@
 package practice8;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 class Student{
@@ -95,8 +97,40 @@ public class Q4 {
 		System.out.println("프로그램이 종료됩니다.");
 //		(2) ArrayList<Student> 대신, HashMap<String, Student> 해시맵을 이용하여 다시 작성하라. 해시
 //		맵의 키(key)는 학생이름으로 한다.
-
-		
+		Map<String, Student> studentMap = new HashMap<>();
+//		데이터 저장 코드
+		for(int i=0; i<5; i++) {
+			System.out.print(">>");
+			String name = sc.next();
+			String dept = sc.next();
+			int sno = sc.nextInt();
+			double score = sc.nextDouble();
+			Student s = new Student(name, dept, sno, score);
+			studentMap.put(name,s);
+		}
+//		전체 인원 출력 코드
+		for(String name : studentMap.keySet()) {
+			System.out.println("---------------------");
+			System.out.println("이름 : " + studentMap.get(name).getName());
+			System.out.println("학과 : " + studentMap.get(name).getDept());
+			System.out.println("학번 : " + studentMap.get(name).getSno());
+			System.out.println("학점 : " + studentMap.get(name).getScore());
+		}
+		while(true) {
+			System.out.print("학생 이름>>");
+			String name = sc.next();
+			if(name.equals("그만")) {
+				break;
+			}
+			if(studentMap.containsKey(name)) {
+				System.out.println(studentMap.get(name).getName()
+						+","+studentMap.get(name).getDept()
+						+","+studentMap.get(name).getSno()
+						+","+studentMap.get(name).getScore());
+			}else {
+				System.out.println("해당하는 학생이 없습니다.");
+			}
+		}
 //		-출력결과---------------------------------------
 //		학생이름, 학과, 학번, 학점을 입력하세요.
 //		>> 홍길동 모바일 1 4.1
