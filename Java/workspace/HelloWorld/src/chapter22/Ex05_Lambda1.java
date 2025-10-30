@@ -13,6 +13,11 @@ class Human5 implements Unit5{
 }
 
 public class Ex05_Lambda1 {
+	int c = 200;
+	public int add(int a, int b) {
+		return a+b+c;
+	}
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

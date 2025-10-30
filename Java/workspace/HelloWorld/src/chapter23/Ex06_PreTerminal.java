@@ -9,7 +9,9 @@ public class Ex06_PreTerminal {
 		// TODO Auto-generated method stub
 		List<Integer> list = Arrays.asList(1,3,5,7,9);
 		// 합계
-		int sum = list.stream().mapToInt(n ->n.intValue()).sum();
+		int sum = list.stream()
+				.mapToInt(n -> n.intValue())
+				.sum();
 		System.out.println("sum = "+sum);
 		// 개수
 		long cnt = list.stream().count();
@@ -32,6 +34,7 @@ public class Ex06_PreTerminal {
 				.max()
 				.getAsInt();
 		System.out.println("max = " + max);
+		
 	}
 
 }

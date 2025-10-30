@@ -26,8 +26,13 @@ public class Ex05_Map {
 		
 		System.out.println();
 		list.stream()
-		.map(s -> s + "입니다.")
-		.forEach(n->System.out.print(n+"\t"));
+		.map(s -> {
+			int length = s.length();
+			return s.toUpperCase() + "입니다. "
+					+ "글자수 : " + length 
+					+ "소문자 : " + s.toLowerCase();
+		})
+		.forEach(n->System.out.println(n));
 	}
 
 }

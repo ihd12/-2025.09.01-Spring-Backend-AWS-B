@@ -16,6 +16,7 @@ class HumanCamp3{
 //		-> Marine3의 경우 지역 내부 클래스라서 밖에서는 절대 쓰이지 않음
 //		-> 익명 내부 클래스로 변경하여 이름을 생략 가능
 		class Marine3 implements Unit3{
+			@Override
 			public void move() {
 				System.out.println("인간형 유닛이 "+speed+"속도로 이동합니다");
 			}
