@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
+  <display-name>MustHaveJSP</display-name>
+  <welcome-file-list>
+  <!-- 서버의 주소와 프로젝트 이름만 주소창에 입력하는 경우 출력할 파일 설정 -->
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.xhtml</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.xhtml</welcome-file>
+  </welcome-file-list>
+  <context-param>
+  	<param-name>INIT_PARAM</param-name>
+  	<param-value>web.xml에 저장한 초기화 매개변수</param-value>
+  </context-param>
+  <!-- <error-page>
+  	404에러 발생시 Exception.jsp를 실행하도록 설정
+  	<error-code>404</error-code>
+  	<location>/02/Exception.jsp</location>
+  </error-page>
+  <error-page>
+  	<error-code>405</error-code>
+  	<location>/02/Exception.jsp</location>
+  </error-page>
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/02/Exception.jsp</location>
+  </error-page> -->
+</web-app>
+
+
+
+
+
+
+
+
+
+
+
+
+
