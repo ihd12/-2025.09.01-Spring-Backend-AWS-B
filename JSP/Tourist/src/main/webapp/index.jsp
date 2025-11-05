@@ -33,9 +33,18 @@
 			<!-- header_cont -->
 			<div class="header_cont">
 				<ul class="util clear">
-					<li><a href="login.jsp">로그인</a></li>
-					<li><a href="join.jsp">회원가입</a></li>
-				</ul>	
+					<% String user_id 
+					= session.getAttribute("user_id") == null 
+					?  null : session.getAttribute("user_id").toString(); 
+					if(user_id == null){%>
+						<li><a href="login.jsp">로그인</a></li>
+						<li><a href="join.jsp">회원가입</a></li>
+					<%}else{%>
+						<li style="color:white;"><%=user_id%>님 반갑습니다.</li>
+						<li><a href="mypage.jsp">마이페이지</a></li>
+						<li><a href="logout.jsp">로그아웃</a></li>
+					<%} %>
+				</ul>
 				<nav>
 				<ul class="gnb clear">
 					<li><a href="javascript:;" class="openAll1">여행정보</a>

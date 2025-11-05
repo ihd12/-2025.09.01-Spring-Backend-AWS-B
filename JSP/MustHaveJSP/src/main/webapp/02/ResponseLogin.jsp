@@ -10,6 +10,7 @@
 	if(id.equalsIgnoreCase("must") && pwd.equalsIgnoreCase("1234")){
 		// 이전에 어떤 페이지가 나왔던 상관없이 페이지를 열어주는 메서드
 		// 데이터를 전달하지 않는 경우 사용
+		session.setAttribute("user_id","must");
 		response.sendRedirect("ResponseWelcome.jsp");
 	}else{
 		// request와 response를 함께 전달하여 jsp를 실행하는 경우에 사용

@@ -7,6 +7,21 @@
 <title>로그인 성공</title>
 </head>
 <body>
+	<%
+		if(session.getAttribute("user_id") == null){
+			response.sendRedirect("RequestMain.jsp");
+		}
+	%>
 	<h2>로그인 성공!!!!!!!!!!!!!</h2>
+	<h3><%=session.getAttribute("user_id")%>님 반갑습니다.</h3>
 </body>
 </html>
+
+
+
+
+
+
+
+
+

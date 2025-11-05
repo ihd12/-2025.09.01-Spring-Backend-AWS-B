@@ -4,6 +4,7 @@
 	String id = request.getParameter("id");
 	String pw = request.getParameter("pw");
 	if(id.equals("must") && pw.equals("1234")){
+		session.setAttribute("user_id", id);
 		response.sendRedirect("index.jsp");
 	}else{
 		request.getRequestDispatcher("login.jsp?loginErr=1")
