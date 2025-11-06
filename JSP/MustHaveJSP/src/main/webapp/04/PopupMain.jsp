@@ -1,11 +1,14 @@
+<%@page import="utils.CookieManager"%>
 <%@page import="utils.JSFunction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
 // 화면상에 on, off 가 나오도록 변수 설정
-String popupMode = "on";
+//String popupMode = "on";
 // 모든 쿠키를 변수에 저장
-Cookie[] cookies = request.getCookies();
+String popupClose = CookieManager.readCookie(request, "PopupClose");
+String popupMode = popupClose.equals("") ? "on" : popupClose;
+/* Cookie[] cookies = request.getCookies();
 if(cookies != null){
 	// 모든 쿠키를 확인할 수 있도록 반복문 실행
 	for(Cookie c : cookies){
@@ -16,7 +19,7 @@ if(cookies != null){
 			popupMode = cookieValue;
 		}
 	}
-}
+} */
 
 %>
 <!DOCTYPE html>

@@ -1,3 +1,4 @@
+<%@page import="utils.CookieManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -44,13 +45,20 @@ $(document).ready(function(){
 					<ul class="login_list">
 					<%
 						String error = request.getParameter("loginErr");
+						String loginId = CookieManager.readCookie(request, "loginId");
+						
 					%>
 						<%if(error != null){ %>
 							<li style="color:red;">로그인 실패</li>
 						<%} %>
-						<li><input type="text" name="id" size="30" placeholder="아이디" /></li>
+						<li><input type="text" name="id" size="30" value="<%=loginId %>" placeholder="아이디" /></li>
 						<li><input type="password" name="pw" size="30" placeholder="비밀번호"/></li>
-						<li><button class="btn_srch">로그인</button></li>
+						<li>
+							<input type="checkbox" class="css-checkbox" id="agree_lbl" 
+								name="save_check" <%= loginId.equals("") ? "" : "checked" %>>
+							<label for="agree_lbl">아이디 저장</label>
+							<button class="btn_srch">로그인</button>
+						</li>
 						<li class="kakao"><a href="javascript:;"><strong>카카오톡</strong> 로그인</a></li>
 						<li class="naver"><a href="javascript:;"><strong>네이버</strong> 로그인</a></li>
 						<li class="facebook"><a href="javascript:;"><strong>페이스북</strong> 로그인</a></li>

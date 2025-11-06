@@ -17,7 +17,7 @@
 	// setMaxAge(초단위) : 유효기간, 유효기간이 끝나면 브라우저에서 삭제하는 방식
 	cookie.setMaxAge(60*60*24*7);
 	// 쿠키를 1초후에 삭제하는 방식 : 쿠키 삭제 메서드는 없음
-	//cookie.setMaxAge(5);
+	//cookie.setMaxAge(1);
 	// 응답에 쿠키를 추가하는 메서드
 	response.addCookie(cookie);
 	%>
