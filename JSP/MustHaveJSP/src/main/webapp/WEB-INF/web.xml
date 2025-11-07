@@ -32,6 +32,10 @@
   	<param-name>OraclePwd</param-name>
   	<param-value>1234</param-value>
   </context-param>
+  <session-config>
+  	<!-- 세션의 유지 시간 설정(분단위) -->
+  	<session-timeout>1</session-timeout>
+  </session-config>
   <!-- <error-page>
   	404에러 발생시 Exception.jsp를 실행하도록 설정
   	<error-code>404</error-code>
