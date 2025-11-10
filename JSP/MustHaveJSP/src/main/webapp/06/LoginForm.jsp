@@ -7,6 +7,8 @@
 <title>로그인 페이지</title>
 </head>
 <body>
+	<jsp:include page="../common/Link.jsp"/>
+	<%@ include file="../common/Link.jsp" %>
 	<h2>로그인 페이지</h2>
 	<span style="color:red; font-size: 1.2em;">
 		<!-- 로그인 실패시 실행할 문구 출력 -->

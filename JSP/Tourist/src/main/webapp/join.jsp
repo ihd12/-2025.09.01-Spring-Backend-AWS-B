@@ -24,58 +24,7 @@
 <!-- wrap -->
 <div id="wrap">
 
-	<header id="header">
-		<div class="header_area box_inner clear">	
-			<h1><a href="javascript;">Tourist in tour</a></h1>
-			<p class="openMOgnb"><a href="#"><b class="hdd">메뉴열기</b> <span></span><span></span><span></span></a></p>
-			<!-- header_cont -->
-			<div class="header_cont">
-				<ul class="util clear">
-					<li><a href="javascript:;">로그인</a></li>
-					<li><a href="javascript:;">회원가입</a></li>
-				</ul>		
-				<nav>
-				<ul class="gnb clear">
-					<li><a href="javascript:;" class="openAll1">여행정보</a>
-
-                        <div class="gnb_depth gnb_depth2_1">
-                            <ul class="submenu_list">
-                                <li><a href="javascript:;">국내</a></li>
-                                <li><a href="javascript:;">해외</a></li>
-                            </ul>
-                        </div>
-					</li>
-					<li><a href="javascript:;" class="openAll2">고객센터</a>
-				        <div class="gnb_depth gnb_depth2_2">
-                            <ul class="submenu_list">
-                                <li><a href="javascript:;">공지사항</a></li>
-                                <li><a href="javascript:;">문의하기</a></li>
-                            </ul>
-                        </div>
-					</li>
-					<li><a href="javascript:;" class="openAll3">상품투어</a>
-                        <div class="gnb_depth gnb_depth2_3">
-                            <ul class="submenu_list">
-                                <li><a href="javascript:;">프로그램 소개</a></li>
-                                <li><a href="javascript:;">여행자료</a></li>
-                            </ul>
-                        </div>
-					</li>
-					<li><a href="javascript:;" class="openAll4">티켓/가이드</a>
-                        <div class="gnb_depth gnb_depth2_4">
-                            <ul class="submenu_list">
-                                <li><a href="javascript:;">항공</a></li>
-                                <li><a href="javascript:;">호텔</a></li>
-                            </ul>
-                        </div>
-					</li>
-				</ul>
-                </nav>
-				<p class="closePop"><a href="javascript:;">닫기</a></p>
-			</div>
-			<!-- //header_cont -->
-		</div>
-	</header>
+	<jsp:include page="header.jsp"/>
 	
 	<div id="container">
 		<!-- location_area -->
@@ -159,39 +108,12 @@
 	</div>
 	<!-- //container -->
 
-	<footer>
-		<div class="foot_area box_inner">
-			<ul class="foot_list clear">
-				<li><a href="javascript;">이용약관</a></li>
-				<li><a href="javascript;">개인정보취급방침</a></li>
-			</ul>
-			<h2>투어리스트인투어</h2>
-			<p class="addr">서울특별시 종로구 혜화동 9길 청운빌딩 5층 <span class="gubun">/</span>        
-				<span class="br_line">대표전화 <span class="space0">02-1234-5678</span> <span class="gubun">/</span>        
-					<span class="br_line">E-mail : <span class="space0"> titour@touristintour.com</span></span>
-				</span>
-			</p>
-			<p class="copy box_inner">Copyright(c) TouristInTour all right reserved</p>
-			<ul class="snslink clear">
-				<li><a href="javascript:;">blog</a></li>
-				<li><a href="javascript:;">facebook</a></li>
-				<li><a href="javascript:;">instargram</a></li>
-			</ul>
-		</div>
-	</footer>
+	<jsp:include page="footer.jsp" />
 
 </div>
 <!-- //wrap -->
 
-<h2 class="hdd">빠른 링크 : 전화 문의, 카카오톡, 오시는 길, 꼭대기로</h2>
-<div class="quick_area">
-	<ul class="quick_list">
-		<li><a href="tel:010-7184-4403"><h3>전화 문의</h3><p>010-1234-5678</p></a></li>
-		<li><a href="javascript:;"><h3>카카오톡 <em>상담</em></h3><p>1:1상담</p></a></li>
-		<li><a href="javascript:;"><h3 class="to_contact">오시는 길</h3></a></li>
-	</ul>
-	<p class="to_top"><a href="#layout0" class="s_point">TOP</a></p>
-</div>
+<jsp:include page="quicklink.jsp" />
 
 </body>
 </html>
