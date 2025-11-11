@@ -69,7 +69,6 @@ dao.close();
 			for(BoardDTO dto : boardLists){
 				// 전체 개수에서 1개씩 빼면서 글 번호를 생성
 				virtualNum = totalCount--;
-						
 		%>
 			<tr align="center">
 				<td><%=virtualNum %></td>
