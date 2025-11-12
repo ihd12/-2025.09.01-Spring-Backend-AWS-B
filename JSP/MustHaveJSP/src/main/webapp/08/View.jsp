@@ -62,7 +62,7 @@ function deletePost(){
 			<tr>
 				<td>내용</td>
 				<td colspan="3" height="100">
-					<%=dto.getContent().replace("\r\n","<br/>") %>
+					<%=dto.getContent().replace("\r\n","<br/>") %> 
 				</td>
 			</tr>
 			<tr>
