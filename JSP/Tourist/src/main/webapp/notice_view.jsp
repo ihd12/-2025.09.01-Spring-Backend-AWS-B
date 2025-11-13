@@ -24,6 +24,7 @@ dao.close();
     <script src="js/html5shiv.js"></script>
 	<script src="js/placeholders.min.js"></script>
 <![endif]-->
+
 </head>
 
 <body>
@@ -62,6 +63,11 @@ dao.close();
 				</li>
 			</ul>
 			<p class="btn_line txt_right">
+				<% Object loginId = session.getAttribute("user_id");
+				if(loginId!=null && loginId.toString().equals(dto.getId())){ %>
+					<a href="notice_edit.jsp?num=<%=dto.getNum() %>" class="btn_bbs">수정하기</a>
+					<button type="button" class="btn_bbs deleteBtn">삭제하기</button>
+				<%} %>
 				<a href="notice_list.jsp" class="btn_bbs">목록</a>
 			</p>
 			<ul class="near_list mt20">
@@ -80,6 +86,40 @@ dao.close();
 <!-- //wrap -->
 
 <jsp:include page="quicklink.jsp" />
-
+<form name="writeFrm">
+	<input type="hidden" name="num" value="<%=dto.getNum() %>">
+</form>
+<script>
+	document.querySelector(".deleteBtn").addEventListener("click", ()=>{
+		let confirmed = confirm("정말로 삭제하시겠습니까?");
+		if(confirmed){
+			//let form = document.writeFrm;
+			// form태그 생성 및 설정
+			let form = document.createElement("form");
+			form.method="post";
+			form.action="deleteProcess.jsp";
+			// input태그 생성 및 설정
+			let input = document.createElement("input");
+			input.type = "hidden";
+			input.name = "num";
+			input.value = "<%=dto.getNum() %>";
+			// form태그에 input태그 추가
+			form.appendChild(input);
+			// body태그에 form태그 추가
+			document.body.appendChild(form);
+			form.submit();
+		}
+	})
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+

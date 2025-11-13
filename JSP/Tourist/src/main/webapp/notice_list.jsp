@@ -1,3 +1,5 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <%@page import="board.BoardDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="board.BoardDAO"%>
@@ -6,8 +8,18 @@
 <% 
 BoardDAO dao = new BoardDAO();
 String searchWord = request.getParameter("searchWord");
+int pageNum = 1;
+if(request.getParameter("pageNum")!=null &&
+	request.getParameter("pageNum").equals("")){
+	pageNum = Integer.parseInt(request.getParameter("pageNum"));
+}
+int pageSize = 10;
+Map<String, Object> param = new HashMap<>();
+param.put("searchWord", searchWord);
+param.put("pageNum", pageNum);
+param.put("pageSize",pageSize);
 List<BoardDTO> boardLists = dao.selectList(searchWord);
-int totalCount = dao.selectCount(searchWord);
+int totalPage = (int)Math.ceil((double)dao.selectCount(searchWord)/pageSize);
 dao.close();
 %>
 <!DOCTYPE html>
@@ -87,8 +99,10 @@ dao.close();
 			</table>
 			<!-- pagination -->
 			<div class="pagination">
-				<a href="javascript:;" class="firstpage  pbtn"><img src="img/btn_firstpage.png" alt="첫 페이지로 이동"></a>
-				<a href="javascript:;" class="prevpage  pbtn"><img src="img/btn_prevpage.png" alt="이전 페이지로 이동"></a>
+				<%if(pageNum == 1) {%>
+				<a href="notice_list.jsp?pageNum=1" class="firstpage  pbtn"><img src="img/btn_firstpage.png" alt="첫 페이지로 이동"></a>
+				<a href="notice_list.jsp?pageNum=<%=pageNum+10%>" class="prevpage  pbtn"><img src="img/btn_prevpage.png" alt="이전 페이지로 이동"></a>
+				<% } %>
 				<a href="javascript:;"><span class="pagenum currentpage">1</span></a>
 				<a href="javascript:;"><span class="pagenum">2</span></a>
 				<a href="javascript:;"><span class="pagenum">3</span></a>

@@ -1,5 +1,6 @@
 package board;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -59,6 +60,40 @@ public class BoardDAO extends DBConnPool{
 		}
 		return bbs;
 	}
+	public List<BoardDTO> selectListPage(Map<String, Object> map){
+		List<BoardDTO> dtoList = new ArrayList<>();
+		String query = "SELECT * FROM board ";
+		if(map.get("searchWord")!=null && map.get("searchWord").equals("")) {
+			query += " WHERE title "
+				+ " LIKE '%"+ map.get("searchWord") +"%'"
+				+ " AND content "
+				+ " LIKE '%"+ map.get("searchWord") +"%'";
+		}
+		query += " ORDER BY num DESC"
+			+ " OFFSET (( ? + 1) * ?) ROWS "
+			+ " FETCH NEXT ? ROWS ONLY";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, map.get("pageNum").toString());
+			psmt.setString(2, map.get("pageSize").toString());
+			psmt.setString(3, map.get("pageSize").toString());
+			while(rs.next()) {
+				BoardDTO dto = new BoardDTO();
+				dto.setNum(rs.getString("num"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setPostdate(rs.getDate("postdate"));
+				dto.setId(rs.getString("id"));
+				dto.setVisitcount(rs.getString("visitcount"));
+				dtoList.add(dto);
+			}
+		}catch(Exception e) {
+			System.out.println("공지사항 목록 조회중 예외 발생");
+			e.printStackTrace();
+		}
+		return dtoList;
+	}
+	
 	public int insertWrite(BoardDTO dto) {
 		int result = 0;
 		try {
@@ -119,7 +154,7 @@ public class BoardDAO extends DBConnPool{
 	public int updateEdit(BoardDTO dto) {
 		int result = 0;
 		try {
-			String query = "UPDATE board SET "
+			String query = "UPDATE tourist_board SET "
 					+" title = ? , content = ? "
 					+" WHERE num = ? ";
 			psmt = con.prepareStatement(query);
@@ -133,12 +168,12 @@ public class BoardDAO extends DBConnPool{
 		}
 		return result;
 	}
-	public int deletePost(BoardDTO dto) {
+	public int deletePost(String num) {
 		int result = 0;
 		try {
-			String query = "DELETE FROM board WHERE num=?";
+			String query = "DELETE FROM tourist_board WHERE num=?";
 			psmt = con.prepareStatement(query);
-			psmt.setString(1, dto.getNum());
+			psmt.setString(1, num);
 			result = psmt.executeUpdate();
 		}catch(Exception e) {
 			System.out.println("게시물 삭제 중 예외 발생");

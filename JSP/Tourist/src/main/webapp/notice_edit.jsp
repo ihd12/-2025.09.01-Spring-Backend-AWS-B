@@ -1,6 +1,17 @@
+<%@page import="board.BoardDTO"%>
+<%@page import="board.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="IsLoggedIn.jsp" %>
+<%
+String num = request.getParameter("num");
+BoardDAO dao = new BoardDAO();
+BoardDTO dto = dao.selectView(num);
+if(!session.getAttribute("user_id").toString().equals(dto.getId())){
+	JSFunction.alertBack("작성자 본인만 실행할 수 있습니다.", out);
+	return;
+}
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -43,17 +54,18 @@
 
 		<!-- bodytext_area -->
 		<div class="bodytext_area box_inner">	
-			<form action="noticeAddProcess.jsp" method="POST">		
+			<form action="editProcess.jsp" method="POST">
+			<input type="hidden" name="num" value="<%=dto.getNum() %>">	
 			<ul class="bbsview_list">
-					<li class="bbs_title">제목 : <input type="text" name="title" size="100" placeholder="제목을 입력해주세요."></li>
+					<li class="bbs_title">제목 : <input type="text" name="title" value="<%=dto.getTitle() %>" size="100" placeholder="제목을 입력해주세요."></li>
 					<li class="bbs_content">
 						<div class="editer_content">
-							<textarea name="content" cols="110" rows="20" placeholder="내용을 입력해주세요."></textarea>
+							<textarea name="content" cols="110" rows="20" placeholder="내용을 입력해주세요."><%=dto.getContent()%></textarea>
 						</div>
 					</li>
 			</ul>
 			<p class="btn_line txt_right">
-				<input type="submit" value="글쓰기" class="btn_srch">
+				<input type="submit" value="수정하기" class="btn_srch">
 				<a href="notice_list.jsp" class="btn_bbs">목록</a>
 			</p>
 			</form>
