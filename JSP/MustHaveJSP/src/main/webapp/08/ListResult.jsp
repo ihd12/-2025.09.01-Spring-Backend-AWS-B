@@ -2,10 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% 
-List<BoardDTO> boardLists = (List<BoardDTO>)request.getAttribute("boardLists");
-int totalCount = (int)request.getAttribute("totalCount");
-%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,30 +34,29 @@ int totalCount = (int)request.getAttribute("totalCount");
 			<th width="10%">조회수</th>
 			<th width="15%">작성일</th>
 		</tr>
-		<%if(boardLists.isEmpty()){ %>
+		<c:if test="${empty boardLists}">
 			<tr>
 				<td colspan="5" align="center">
 					등록된 게시물이 없습니다^^*
 				</td>
 			</tr>
-		<%}else{
-			// 게시글 번호를 역순으로 설정하기 위해 변수 생성
-			int virtualNum = 0;
-			for(BoardDTO dto : boardLists){
-				// 전체 개수에서 1개씩 빼면서 글 번호를 생성
-				virtualNum = totalCount--;
-		%>
+		</c:if>
+		<c:if test="${not empty boardLists}">
+			<!-- 게시글 번호를 역순으로 설정하기 위해 변수 생성 -->
+			<c:set var="virtualNum" value="${totalCount}"/>
+			<c:forEach var="dto" items="${boardLists}">
+			<c:set var="virtualNum" value="${virtualNum-1}"/>
 			<tr align="center">
-				<td><%=virtualNum %></td>
+				<td>${virtualNum}</td>
 				<td align="left">
-					<a href="View.jsp?num=<%=dto.getNum()%>"><%=dto.getTitle() %></a>
+					<a href="View.jsp?num=${dto.num}">${dto.title }</a>
 				</td>
-				<td align="center"><%=dto.getId() %></td>
-				<td align="center"><%=dto.getVisitcount() %></td>
-				<td align="center"><%=dto.getPostdate() %></td>
+				<td align="center">${dto.id }</td>
+				<td align="center">${dto.visitcount }</td>
+				<td align="center">${dto.postdate}</td>
 			</tr>
-		<%	}
-		  } %>
+			</c:forEach>
+		</c:if>		  
 	</table>
 	<table border="1" width="90%">
 		<tr align="right">

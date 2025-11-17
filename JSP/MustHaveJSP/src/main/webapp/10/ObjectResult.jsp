@@ -1,3 +1,4 @@
+<%@page import="model1.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,6 +10,9 @@
 <body>
 	<h2>request 영역을 통해 전달된 객체 읽기</h2>
 	<ul>
+		<% BoardDTO dto = (BoardDTO)request.getAttribute("dto"); %>
+		<li>JSP 방식 : <%=dto.getNum()%></li>
+		<li>표현언어(EL) 방식
 		<li>글번호 : ${dto.num}</li>
 		<li>제목 : ${dto.title}</li>
 		<li>내용 : ${dto.content}</li>

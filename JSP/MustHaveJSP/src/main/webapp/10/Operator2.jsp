@@ -8,7 +8,7 @@ pageContext.setAttribute("nullStr",null);
 pageContext.setAttribute("emptyStr","");
 pageContext.setAttribute("lengthZero", new Integer[0]);
 ArrayList<Object> objList = new ArrayList<>();
-objList.add("1");
+//objList.add("1");
 pageContext.setAttribute("sizeZero", objList);
 
 %>

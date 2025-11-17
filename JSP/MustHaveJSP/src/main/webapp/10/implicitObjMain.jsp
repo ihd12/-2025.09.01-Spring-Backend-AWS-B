@@ -3,9 +3,9 @@
 <%
 // 페이지 영역에 데이터 저장 -> 가장 작은 범위
 // page < request < session < application 
-// pageContext.setAttribute("scopeValue", "페이지 영역");
-request.setAttribute("scopeValue", "리퀘스트 영역"); //리퀘스트 영역
-session.setAttribute("sessionValue", "세션 영역"); // 세션 영역
+//pageContext.setAttribute("scopeValue", "페이지 영역");
+//request.setAttribute("scopeValue", "리퀘스트 영역"); //리퀘스트 영역
+session.setAttribute("scopeValue", "세션 영역"); // 세션 영역
 application.setAttribute("scopeValue", "애플리케이션 영역"); //애플리케이션 영역
 %>
 <!DOCTYPE html>
@@ -29,7 +29,7 @@ application.setAttribute("scopeValue", "애플리케이션 영역"); //애플리
 		<!-- 영역을 지정하지 않으면 가장 작은 영역부터 찾아서 출력 -->
 		<!-- 페이지 영역은 거의 사용하지 않고 request혹은 session을 많이 사용 -->
 		<li>${scopeValue }</li>
-		<li>${sessionValue }</li>
+		<li>${scopeValue }</li>
 	</ul>
 </body>
 </html>

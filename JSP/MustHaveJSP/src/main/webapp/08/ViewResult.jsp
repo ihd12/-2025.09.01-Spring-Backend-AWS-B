@@ -1,7 +1,8 @@
 <%@page import="model1.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% BoardDTO dto = (BoardDTO)request.getAttribute("dto"); %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +34,7 @@ function deletePost(){
 		<table border="1" width="90%">
 			<tr>
 				<td>번호</td>
-				<td>${dto.num }</td>
+				<td>${dto.num}</td>
 				<td>작성자</td>
 				<td>${dto.name }</td>
 			</tr>
@@ -51,18 +52,19 @@ function deletePost(){
 				<td>내용</td>
 				<td colspan="3" height="100">
 					${dto.content}
+					<%-- <% pageContext.setAttribute("enter","\r\n"); %>
+					<c:out value="${fn:replace(dto.content,enter,'<br/>')}" escapeXml="false" /> --%>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="4" align="center">
-					<%if(session.getAttribute("UserId") != null
-						&& session.getAttribute("UserId").toString().equals(dto.getId())){%>
+					<c:if test="${not empty UserId and UserId ne dto.id}">
 						<button type="button"
 							onclick="location.href='Edit.jsp?num=${dto.num}';">
 							수정하기
 						</button>
 						<button type="button" onclick="deletePost();">삭제하기</button>	
-					<%} %>
+					</c:if>
 					<button type="button" onclick="location.href='List.jsp';">
 						목록보기
 					</button>
