@@ -39,7 +39,7 @@
 	</c:if>
 	result4 : ${result4}
 	
-	<c:if test="${ true }" var="result5">
+	<c:if test=" ${ true } " var="result5">
 		EL 양쪽에 공백이 있는 경우 false<br/>
 	</c:if>
 	result5 : ${result5}

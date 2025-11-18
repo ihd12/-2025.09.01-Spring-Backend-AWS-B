@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h4>일반 for문 형태의 forEach 태그</h4>
-	<c:forEach begin="1" end="3" step="1" var="i">
+	<c:forEach begin="1" end="100" step="5" var="i">
 		<p>반복 ${i} 입니다.</p>
 	</c:forEach>
 	

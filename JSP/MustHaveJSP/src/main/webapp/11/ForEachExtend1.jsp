@@ -11,7 +11,7 @@
 <h4>향상된 for문 형태의 forEach 태그</h4>
 	<p>배열 사용하기</p>
 	<% String [] rgba = {"red", "green", "blue", "black"};%>
-	<c:forEach items="<%=rgba %>" var="color">
+	<c:forEach  var="color" items="<%=rgba %>">
 		<span style="color:${color};">${color}</span>
 	</c:forEach>
 	

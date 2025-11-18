@@ -62,7 +62,7 @@ public class BoardDAO extends DBConnPool{
 	}
 	public List<BoardDTO> selectListPage(Map<String, Object> map){
 		List<BoardDTO> dtoList = new ArrayList<>();
-		String query = "SELECT * FROM board ";
+		String query = "SELECT * FROM tourist_board ";
 		if(map.get("searchWord")!=null && map.get("searchWord").equals("")) {
 			query += " WHERE title "
 				+ " LIKE '%"+ map.get("searchWord") +"%'"
@@ -70,13 +70,14 @@ public class BoardDAO extends DBConnPool{
 				+ " LIKE '%"+ map.get("searchWord") +"%'";
 		}
 		query += " ORDER BY num DESC"
-			+ " OFFSET (( ? + 1) * ?) ROWS "
+			+ " OFFSET (( ? - 1) * ?) ROWS "
 			+ " FETCH NEXT ? ROWS ONLY";
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, map.get("pageNum").toString());
 			psmt.setString(2, map.get("pageSize").toString());
 			psmt.setString(3, map.get("pageSize").toString());
+			rs = psmt.executeQuery();
 			while(rs.next()) {
 				BoardDTO dto = new BoardDTO();
 				dto.setNum(rs.getString("num"));
