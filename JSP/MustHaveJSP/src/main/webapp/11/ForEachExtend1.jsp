@@ -10,7 +10,8 @@
 <body>
 <h4>향상된 for문 형태의 forEach 태그</h4>
 	<p>배열 사용하기</p>
-	<% String [] rgba = {"red", "green", "blue", "black"};%>
+	<% String [] rgba = {"red", "green", "blue", "black"};
+	for(String color : rgba){}%>
 	<c:forEach  var="color" items="<%=rgba %>">
 		<span style="color:${color};">${color}</span>
 	</c:forEach>

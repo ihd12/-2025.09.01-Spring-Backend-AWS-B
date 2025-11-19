@@ -20,7 +20,7 @@
 	<c:set var="lists" value="<%=lists %>" />
 	<!-- items : 반복 가능한 변수(배열,리스트,맵) -->
 	<!-- var : items에 설정한 변수에서 하나씩 데이터를 빼서 저장할 변수 이름 -->
-	<c:forEach items="${lists }" var="list">
+	<c:forEach var="list" items="${lists }" >
 		<li> 이름 : ${list.name} , 나이 : ${list.age}
 	</c:forEach>
 	
@@ -30,7 +30,7 @@
 	maps.put("2nd",new Person("장영실", 44));
 	maps.put("3rd",new Person("신숙주", 54));%>
 	<c:set var="maps" value="<%=maps %>" />
-	<c:forEach items="${maps }" var="map">
+	<c:forEach var="map" items="${maps }" >
 		<!-- map.key : 맵의 key값 출력 -->
 		<!-- map.value : 맵의 value값 출력 -->
 		<li>key => ${map.key} 
