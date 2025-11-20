@@ -22,7 +22,7 @@ public class BoardViewController extends HttpServlet {
 		// 조회수 1증가 
 		service.editVisitCount(num);
 		// 게시글 데이터 조회
-		BoardDTO dto = service.getBoard(num);
+		BoardDTO dto = service.getBoard(num, "view");
 		
 		req.setAttribute("dto", dto);
 		req.getRequestDispatcher("/12_1/ViewResult.jsp")

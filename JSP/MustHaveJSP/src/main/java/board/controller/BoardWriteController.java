@@ -25,7 +25,9 @@ public class BoardWriteController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
+		// 서블릿에서는 JSPWriter 대신 PrintWriter를 사용
 		PrintWriter out = resp.getWriter();
+		// PrintWriter사용시 한글이 깨지기 때문에 한글이 깨지지 않도록 인코딩을 변경
 		resp.setContentType("text/html;charset=UTF-8");
 		
 		String title = req.getParameter("title");
@@ -44,3 +46,8 @@ public class BoardWriteController extends HttpServlet{
 		}
 	}
 }
+
+
+
+
+

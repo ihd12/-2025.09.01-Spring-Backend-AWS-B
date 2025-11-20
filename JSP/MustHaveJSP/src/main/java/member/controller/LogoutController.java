@@ -22,7 +22,7 @@ public class LogoutController extends HttpServlet{
 		session.invalidate();
 		System.out.println(req.getContextPath());
 		// 세션 데이터 삭제 후 로그인 페이지로 이동
-		resp.sendRedirect("/MustHaveJSP/login.do");
+		resp.sendRedirect("login.do");
 	}
 }
 

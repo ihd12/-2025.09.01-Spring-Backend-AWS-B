@@ -22,9 +22,9 @@ function validateForm(form){
 </script>
 </head>
 <body>
-<jsp:include page="../common/Link.jsp"/>
+<jsp:include page="../common/Link_servlet.jsp"/>
 <h2>회원 게시판 - 수정하기(Edit)</h2>
-<form name="writeFrm" method="post" action="EditProcess.jsp"
+<form name="writeFrm" method="post" action="edit.do"
 	onsubmit="return validateForm(this);">
 	<input type="hidden" name="num" value="${dto.num}"/>
 	<table border="1" width="90%">
@@ -40,7 +40,7 @@ function validateForm(form){
 			<td colspan="2" align="center">
 				<button type="submit">작성 완료</button>
 				<button type="reset">다시 입력</button>
-				<button type="button" onclick="location.href='List.jsp';">
+				<button type="button" onclick="location.href='boardlist.do';">
 					목록보기
 				</button>
 			</td>

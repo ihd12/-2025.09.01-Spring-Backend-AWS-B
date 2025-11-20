@@ -18,7 +18,7 @@ function deletePost(){
 		// method설정 : post,get
 		form.method = "post";
 		// submit시 실행할 페이지 설정
-		form.action = "DeleteProcess.jsp"
+		form.action = "remove.do"
 		// submit실행
 		form.submit();
 	}
@@ -58,9 +58,9 @@ function deletePost(){
 			</tr>
 			<tr>
 				<td colspan="4" align="center">
-					<c:if test="${not empty UserId and UserId ne dto.id}">
+					<c:if test="${not empty UserId and UserId eq dto.id}">
 						<button type="button"
-							onclick="location.href='Edit.jsp?num=${dto.num}';">
+							onclick="location.href='edit.do?num=${dto.num}';">
 							수정하기
 						</button>
 						<button type="button" onclick="deletePost();">삭제하기</button>	

@@ -34,14 +34,17 @@ public class BoardService {
 		dao.close();
 	}
 	// 1건 조회 서비스
-	public BoardDTO getBoard(String num) {
+	public BoardDTO getBoard(String num, String type) {
 		// DB연결
 		BoardDAO dao = new BoardDAO();
 		BoardDTO dto = dao.selectView(num);;
 		//db접속 종료
 		dao.close();
 		//content의 엔터키 <br/>태그로 변경
-		dto.setContent(dto.getContent().replace("\r\n", "<br/>"));
+		if(type.equals("view")) {
+			dto.setContent(dto.getContent().replace("\r\n", "<br/>"));
+		}
+		
 		return dto;
 	}
 	// 게시글 데이터 추가
@@ -53,7 +56,20 @@ public class BoardService {
 		dao.close();
 		return result;
 	}
-	
+	public int editBoard(BoardDTO dto) {
+		int result = 0;
+		BoardDAO dao = new BoardDAO();
+		result = dao.updateEdit(dto);
+		dao.close();
+		return result;
+	}
+	public int removeBoard(BoardDTO dto) {
+		int result = 0;
+		BoardDAO dao = new BoardDAO();
+		result = dao.deletePost(dto);
+		dao.close();
+		return result;
+	}
 }
 
 
