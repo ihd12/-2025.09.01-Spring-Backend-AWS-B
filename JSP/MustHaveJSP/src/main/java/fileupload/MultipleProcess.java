@@ -1,6 +1,7 @@
 package fileupload;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -10,32 +11,29 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import utils.FileUtil;
 
-@WebServlet("/13/UploadProcess.do")
+@WebServlet("/13/MultipleProcess.do")
 @MultipartConfig(
-	maxFileSize = 1024*1024*1, // 파일 용량 1MB
-	maxRequestSize = 1024*1024*10 // 리퀘스트의 용량 10MB
+	maxFileSize = 1024*1024*1,
+	maxRequestSize = 1024*1024*10
 )
-public class UploadProcess extends HttpServlet{
+
+public class MultipleProcess extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try {
-			// 저장할 폴더 설정
-			// getServletContext().getRealPath() : Uploads가 실제로 있는 폴더 출력
-			// C드라이브, D드라이브처럼 탐색기에 나오는 경로를 설정하는 것도 가능
-			String saveDirectory = getServletContext().getRealPath("/Uploads");
-			// FileUtil.uploadFile(리퀘스트, 저장할 폴더 경로) : 설정한 경로에 파일을 저장하는 메서드
-			String originalFileName = FileUtil.uploadFile(req, saveDirectory);
-			// 파일 이름 변경 => 원본 파일이름이 간단하여 겹치는 파일이 생기면 덮어쓰가 되어 없어질 수 있기 때문에
+		// 저장할 폴더 설정
+		String saveDirectory = getServletContext().getRealPath("/Uploads");
+		// 여러개의 파일을 저장하고 원본 이름을 list에 저장하는 메서드
+		ArrayList<String> listFileName = FileUtil.multipleFile(req, saveDirectory);
+		//원본 파일이름을 하나씩 꺼내어 반복
+		for(String originalFileName : listFileName) {
+			// 파일이름 변경
 			String savedFileName = FileUtil.renameFile(saveDirectory, originalFileName);
-			// 데이터베이스 파일 이름 및 제목, 카테고리 저장
-			insertMyFile(req,originalFileName, savedFileName);
-			resp.sendRedirect("FileList.jsp");
-		}catch(Exception e) {
-			e.printStackTrace();
-			req.setAttribute("errorMessage", "파일 업로드 오류");
-			req.getRequestDispatcher("FileUploadMain.jsp").forward(req,resp);
+			// DB에 저장
+			insertMyFile(req, originalFileName, savedFileName);
 		}
+		// 파일 저장 후 리스트 화면 출력
+		resp.sendRedirect("FileList.jsp");
 	}
 	private void insertMyFile(HttpServletRequest req, String oFileName, String sFileName) {
 		String title = req.getParameter("title");
@@ -58,6 +56,9 @@ public class UploadProcess extends HttpServlet{
 		dao.close();
 	}
 }
+
+
+
 
 
 
