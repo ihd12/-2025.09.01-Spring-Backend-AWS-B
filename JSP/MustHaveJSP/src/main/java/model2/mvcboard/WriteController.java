@@ -29,6 +29,7 @@ public class WriteController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("text/html;charset=UTF-8");
+		//D:\(09.01)SpringBackendAWSDeploy\JSP\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MustHaveJSP
 		String saveDirectory = getServletContext().getRealPath("/Uploads");
 		String originalFileName = "";
 		try {

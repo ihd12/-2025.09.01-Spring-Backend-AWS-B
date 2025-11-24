@@ -1,7 +1,11 @@
 package utils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,6 +14,7 @@ import java.util.List;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
 public class FileUtil {
@@ -72,6 +77,55 @@ public class FileUtil {
 			listFileName.add(originalFileName);
 		}
 		return listFileName;
+	}
+	public static void download(HttpServletRequest req, HttpServletResponse resp
+			, String directory, String sfileName, String ofileName) {
+		// 파일이 저장된 위치
+		String sDirectory = req.getServletContext().getRealPath("/Uploads");
+		try{
+			// 저장된 파일이름으로 실제 파일을 찾아서 객체로 저장
+			File file = new File(sDirectory, sfileName);
+			InputStream iStream = new FileInputStream(file);
+			// 파일명이 한글일 경우 깨지지 않도록 하는 설정
+			String client = req.getHeader("User-Agent");
+			if(client.indexOf("WOW64") == -1){
+				ofileName = new String(ofileName.getBytes("UTF-8"), "ISO-8859-1");
+			}else{
+				ofileName = new String(ofileName.getBytes("KSC5601"), "ISO-8859-1");
+			}
+			// 파일 다운로드용으로 사용하기위해 응답을 초기화
+			resp.reset();
+			// 응답 내용을 설정
+			resp.setContentType("application/octet-stream");
+			resp.setHeader("Content-Disposition","attachment;filename=\""+ofileName+"\"");
+			resp.setHeader("Content-Length",""+file.length());
+			// 출력 내용을 초기화
+			
+			// 출력 내용을 파일로 변경
+			OutputStream oStream = resp.getOutputStream();
+			byte[] b = new byte[(int)file.length()];
+			int readBuffer = 0;
+			while((readBuffer = iStream.read(b)) > 0){
+				oStream.write(b, 0, readBuffer);
+			}
+			// 사용한 스트림 닫기
+			iStream.close();
+			oStream.close();
+			
+		}catch(FileNotFoundException e){
+			System.out.println("파일을 찾을 수 없습니다.");
+			e.printStackTrace();
+		}catch(Exception e){
+			System.out.println("예외가 발생하였습니다..");
+			e.printStackTrace();
+		}
+	}
+	public static void deleteFile(HttpServletRequest req, String directory, String filename) {
+		String sDirectory = req.getServletContext().getRealPath(directory);
+		File file = new File(sDirectory + File.separator + filename);
+		if(file.exists()) {
+			file.delete();
+		}
 	}
 }
 
