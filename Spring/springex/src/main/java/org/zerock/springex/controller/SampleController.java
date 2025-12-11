@@ -3,9 +3,11 @@ package org.zerock.springex.controller;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 
@@ -48,5 +50,30 @@ public class SampleController {
     @GetMapping("/ex3")
     public void ex3(LocalDate localDate){
         log.info("LocalDate : " + localDate);
+    }
+    @GetMapping("/ex4")
+    public void ex4(Model model){
+        log.info("ex4 model test ........");
+        String message = "화면으로 데이터를 전달하는 메시지";
+        model.addAttribute("message", message);
+    }
+    @GetMapping("/ex5")
+    public String ex5(RedirectAttributes redirectAttributes){
+        log.info("ex5 redirect test ........");
+//      파라미터를 전달할때 사용
+        redirectAttributes.addAttribute("name", "hong");
+//      일회용 데이터 전달시 사용
+        redirectAttributes.addFlashAttribute("age", "20");
+//      리다이렉트 방법 : return 부분에 redirect:실행할 주소
+        return "redirect:/ex6";
+    }
+    @GetMapping("/ex6")
+    public void ex6(String name){
+        log.info("name : " + name);
+    }
+    @GetMapping("/ex7")
+    public void ex7(String p1, int p2){
+        log.info("p1 : " + p1);
+        log.info("p2 : " + p2);
     }
 }

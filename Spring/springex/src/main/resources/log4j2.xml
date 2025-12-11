@@ -18,6 +18,9 @@
         <logger name="org.zerock" level="INFO" additivity="false">
             <appender-ref ref="console"/>
         </logger>
+        <logger name="org.zerock.springex.mappers" level="TRACE" additivity="false">
+            <appender-ref ref="console"/>
+        </logger>
         <!--위에서 설정한 logger이외의 코드에 대한 로그 설정-->
         <root level="INFO" additivity="false">
             <AppenderRef ref="console"/>

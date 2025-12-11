@@ -11,7 +11,7 @@ repositories {
 }
 
 ext {
-    junitVersion = '5.13.2'
+    junitVersion = '5.10.2'
 }
 
 sourceCompatibility = '17'
@@ -53,6 +53,8 @@ dependencies {
     implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.4'
 //  ConnectionPool 라이브러리
     implementation group:'com.zaxxer', name:'HikariCP', version:'5.0.1'
+//  파리미터 검증 라이브러리
+    implementation 'org.hibernate.validator:hibernate-validator:8.0.3.Final'
 }
 
 test {
