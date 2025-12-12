@@ -57,6 +57,7 @@ class TodoMapperTest {
         pageRequestDTO.setTypes(types);
         pageRequestDTO.setKeyword("1");
         todoMapper.selectSearch(pageRequestDTO);
+        todoMapper.getCount(pageRequestDTO);
     }
 }
 

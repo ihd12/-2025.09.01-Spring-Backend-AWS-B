@@ -43,8 +43,8 @@
     </select>
     <select id="getCount" resultType="int">
         SELECT COUNT(tno)
-        <include refid="search"></include>
         FROM todo
+        <include refid="search"></include>
     </select>
     <!--where 안에 주석이든 쿼리든 내용이 들어있다면 WHERE 추가해주는 명령어-->
     <!--<foreach collection="배열,리스트" item="꺼낸데이터" open="시작문자열" close="종료문자열" separator="반복시 추가할 문자열">-->

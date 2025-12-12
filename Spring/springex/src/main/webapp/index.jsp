@@ -8,6 +8,7 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+<a href="hello-servlet">Hello Servlet</a><br/>
+<a href="/todo/list">할 일 목록</a>
 </body>
 </html>
