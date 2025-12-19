@@ -1,11 +1,14 @@
 package me.shinsunyoung.springbootdeveloper.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
+
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -18,8 +21,20 @@ public class Article {
     private String title;
     @Column(name="content", nullable = false)
     private String content;
+    @CreatedDate
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+    @LastModifiedDate
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
     @Builder
     public Article(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
+    // title,content변경하는 메서드
+    public void update(String title, String content){
         this.title = title;
         this.content = content;
     }
