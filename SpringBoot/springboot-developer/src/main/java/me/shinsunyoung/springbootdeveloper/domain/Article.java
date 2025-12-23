@@ -21,6 +21,9 @@ public class Article {
     private String title;
     @Column(name="content", nullable = false)
     private String content;
+    @Column(name="user_id")
+    private String userId;
+
     @CreatedDate
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -29,9 +32,10 @@ public class Article {
     private LocalDateTime updatedAt;
 
     @Builder
-    public Article(String title, String content){
+    public Article(String title, String content, String userId){
         this.title = title;
         this.content = content;
+        this.userId = userId;
     }
     // title,content변경하는 메서드
     public void update(String title, String content){

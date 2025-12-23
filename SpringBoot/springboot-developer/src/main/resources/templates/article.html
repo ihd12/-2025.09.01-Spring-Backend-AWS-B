@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>블로그 글</title>
@@ -23,10 +24,14 @@
                     <section class="mb-5">
                         <p class="fs-5 mb-4" th:text="${article.content}"></p>
                     </section>
-                    <button type="button" class="btn btn-primary btn-sm">수정</button>
-                    <button type="button" id="delete-btn" class="btn btn-secondary btn-sm">삭제</button>
-                    <button type="button" id="axios-delete-btn" class="btn btn-secondary btn-sm">Axios삭제</button>
-                    <button type="button" id="axios-delete-btn2" class="btn btn-secondary btn-sm">Axios삭제2</button>
+                    <th:block sec:authorize="isAuthenticated()" th:if="${article.userId == #authentication.name}">
+                        <button type="button" id="modify-btn"
+                                th:onclick="|location.href='@{/new-article?id={articleId}(articleId=${article.id})}'|"
+                                class="btn btn-primary btn-sm">수정</button>
+                        <button type="button" id="delete-btn" class="btn btn-secondary btn-sm">삭제</button>
+                        <button type="button" id="axios-delete-btn" class="btn btn-secondary btn-sm">Axios삭제</button>
+                        <button type="button" id="axios-delete-btn2" class="btn btn-secondary btn-sm">Axios삭제2</button>
+                    </th:block>
                 </article>
             </div>
         </div>
