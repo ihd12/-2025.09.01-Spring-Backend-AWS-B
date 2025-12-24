@@ -6,6 +6,7 @@ import me.shinsunyoung.springbootdeveloper.domain.User;
 import me.shinsunyoung.springbootdeveloper.dto.AddArticleRequest;
 import me.shinsunyoung.springbootdeveloper.dto.ArticleResponse;
 import me.shinsunyoung.springbootdeveloper.dto.UpdateArticleRequest;
+import me.shinsunyoung.springbootdeveloper.dto.UserSecurityDTO;
 import me.shinsunyoung.springbootdeveloper.service.BlogService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class BlogApiController {
             // @RequestBody : post메서드로 받는 데이터의 경우 붙여야하는 어노테이션
             @RequestBody AddArticleRequest request,
             // @AuthenticationPrincipal : 로그인시 저장한 SpringSecurity 데이터
-            @AuthenticationPrincipal User user){
+            @AuthenticationPrincipal UserSecurityDTO user){
         // SpringSecurity 로그인 객체에서 사용자 ID를 꺼내어 저장
         request.setUserId(user.getUsername());
         // 클라이언트에서 받은 DTO로 서비스를 실행

@@ -1,6 +1,7 @@
 package me.shinsunyoung.springbootdeveloper.config;
 
 import lombok.RequiredArgsConstructor;
+import me.shinsunyoung.springbootdeveloper.service.CustomOAuth2UserService;
 import me.shinsunyoung.springbootdeveloper.service.UserDetailService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +25,7 @@ import javax.sql.DataSource;
 @RequiredArgsConstructor
 public class WebSecurityConfig {
     private final UserDetailService userService;
+    private final CustomOAuth2UserService customOAuth2UserService;
     private final DataSource dataSource; // 데이터베이스 연결 객체
 
     @Bean // 자동 로그인 데이터 저장시 사용하는 레포지토리
@@ -52,7 +54,8 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // permitAll로 되어있는 url은 로그인하지 않아도 통과
                         .requestMatchers("/login","/signup","/user"
-                                ,"/articles","/articles/{id}").permitAll()
+                                ,"/articles","/articles/{id}","/file/**")
+                        .permitAll()
                         // 권한에 따라 접속 가능한 url 설정
                         //.requestMatchers("/new-article").hasRole("ADMIN")
                         // 위의 url이외에 모든 url은 로그인이 필요하도록 설정
@@ -77,6 +80,9 @@ public class WebSecurityConfig {
                 )
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/login")
+                        .userInfoEndpoint(userInfo -> userInfo
+                                .userService(customOAuth2UserService))
+                        .defaultSuccessUrl("/articles")
                 )
                 .build();
     }

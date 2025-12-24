@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User,Long> {
     // SpringSecurity가 비밀번호 확인을 대신함
-    Optional<User> findByEmail(String email);
+    Optional<User> findByEmailAndSocial(String email, boolean social);
 }
 
 
