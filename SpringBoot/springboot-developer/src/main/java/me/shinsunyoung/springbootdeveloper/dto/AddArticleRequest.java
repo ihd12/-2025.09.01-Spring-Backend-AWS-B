@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import me.shinsunyoung.springbootdeveloper.domain.Article;
+import me.shinsunyoung.springbootdeveloper.domain.ArticleImage;
+
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,6 +24,14 @@ public class AddArticleRequest {
                 .title(this.title)
                 .content(this.content)
                 .userId(this.userId)
+                .build();
+    }
+    public Article toEntityImage(Set<ArticleImage> images){
+        return Article.builder()
+                .title(this.title)
+                .content(this.content)
+                .userId(this.userId)
+                .images(images)
                 .build();
     }
 }

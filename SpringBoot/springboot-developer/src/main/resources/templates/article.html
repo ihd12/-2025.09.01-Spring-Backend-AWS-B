@@ -24,6 +24,13 @@
                     <section class="mb-5">
                         <p class="fs-5 mb-4" th:text="${article.content}"></p>
                     </section>
+                    <section class="mb-5">
+                        <p class="fs-5 mb-4" th:each="image : ${article.images}">
+                            <img th:src="|@{/file/{fileName}(fileName=${image.uuid})}|"
+                                 th:alt="${image.fileName}"
+                                class="img-fluid"/>
+                        </p>
+                    </section>
                     <th:block sec:authorize="isAuthenticated()" th:if="${article.userId == #authentication.name}">
                         <button type="button" id="modify-btn"
                                 th:onclick="|location.href='@{/new-article?id={articleId}(articleId=${article.id})}'|"

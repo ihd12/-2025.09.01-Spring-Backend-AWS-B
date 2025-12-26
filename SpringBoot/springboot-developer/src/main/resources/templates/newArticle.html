@@ -22,14 +22,28 @@
                     <section class="mb-5">
                         <textarea class="form-control h-25" rows="10" placeholder="내용" id="content" th:text="${article.content}"></textarea>
                     </section>
+                    <section class="mb-5">
+                        <input type="file" name="files" id="files" class="form-control" multiple></input>
+                    </section>
+                    <section class="mb-5">
+                        <p class="fs-5 mb-4" th:each="image : ${article.images}">
+                            <img th:src="|@{/file/{fileName}(fileName=${image.uuid})}|"
+                                 th:alt="${image.fileName}"
+                                 class="img-fluid"
+                                 th:data-src="${image.uuid}"
+                            />
+                        </p>
+                    </section>
                     <th:block sec:authorize="isAuthenticated()">
                         <th:block th:if="${article.userId == #authentication.name}">
-                            <button th:if="${article.id}!=null" type="button" id="modify-btn" class="btn btn-primary btn-sm">수정</button>
-                            <button th:if="${article.id}!=null" type="button" id="modify-btn2" class="btn btn-primary btn-sm">axios수정</button>
+<!--                            <button th:if="${article.id}!=null" type="button" id="modify-btn" class="btn btn-primary btn-sm">수정</button>-->
+<!--                            <button th:if="${article.id}!=null" type="button" id="modify-btn2" class="btn btn-primary btn-sm">axios수정</button>-->
+                            <button th:if="${article.id}!=null" type="button" id="modify-btn3" class="btn btn-primary btn-sm">수정(파일)</button>
                         </th:block>
                     </th:block>
-                    <button th:if="${article.id}==null" type="button" id="create-btn" class="btn btn-primary btn-sm">등록</button>
-                    <button th:if="${article.id}==null" type="button" id="create-btn2" class="btn btn-primary btn-sm">axios등록</button>
+<!--                    <button th:if="${article.id}==null" type="button" id="create-btn" class="btn btn-primary btn-sm">등록</button>-->
+<!--                    <button th:if="${article.id}==null" type="button" id="create-btn2" class="btn btn-primary btn-sm">axios등록</button>-->
+                    <button th:if="${article.id}==null" type="button" id="create-btn3" class="btn btn-primary btn-sm">등록(파일)</button>
                 </article>
             </div>
         </div>

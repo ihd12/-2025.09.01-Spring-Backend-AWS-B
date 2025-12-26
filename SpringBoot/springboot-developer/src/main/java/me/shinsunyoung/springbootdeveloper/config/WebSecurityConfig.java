@@ -33,7 +33,7 @@ public class WebSecurityConfig {
         JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
         repo.setDataSource(dataSource);
 //        persistent_logins 테이블 생성 SQL 실행 => 이미 테이블 있으면 에러를 발생시킴
-//        repo.setCreateTableOnStartup(true);
+        //repo.setCreateTableOnStartup(true);
         return repo;
     }
 
@@ -53,7 +53,7 @@ public class WebSecurityConfig {
                 // 인가가 필요한 페이지 설정
                 .authorizeHttpRequests(auth -> auth
                         // permitAll로 되어있는 url은 로그인하지 않아도 통과
-                        .requestMatchers("/login","/signup","/user"
+                        .requestMatchers("/","/login","/signup","/user"
                                 ,"/articles","/articles/{id}","/file/**")
                         .permitAll()
                         // 권한에 따라 접속 가능한 url 설정

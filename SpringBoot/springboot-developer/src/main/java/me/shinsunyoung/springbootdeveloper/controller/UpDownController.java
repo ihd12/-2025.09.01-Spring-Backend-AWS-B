@@ -32,7 +32,7 @@ public class UpDownController {
     public List<FileNameUtil> upload(UploadFileDTO uploadFileDTO){
         return fileUtil.uploadFile(uploadFileDTO);
     }
-    @GetMapping("/view/{fileName}")
+    @GetMapping("/{fileName}")
     public ResponseEntity<Resource> view(@PathVariable String fileName){
         // upload폴더에 있는 파일이름을 찾아서 파일을 저장
         Resource resource = new FileSystemResource(
