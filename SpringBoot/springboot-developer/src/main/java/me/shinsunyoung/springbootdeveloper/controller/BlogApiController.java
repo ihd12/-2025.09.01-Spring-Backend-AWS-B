@@ -63,13 +63,13 @@ public class BlogApiController {
     }
     @PutMapping("/api/articles/{id}")
     public ResponseEntity<Article> updateArticle(
-                @PathVariable("id") long id,
-                @ModelAttribute UpdateArticleRequest request){
+            @PathVariable("id") long id,
+            @ModelAttribute UpdateArticleRequest request){
         UploadFileDTO fileDTO = new UploadFileDTO();
         fileDTO.setFiles(request.getFiles());
         List<FileNameUtil> fileList = fileUtil.uploadFile(fileDTO);
         // PK는 주소창에서 변경할 데이터는 파라미터로 받아옴
-        Article updatedArticle = blogService.update(id, request, fileList);
+        Article updatedArticle = blogService.update(id, request,fileList);
         return ResponseEntity.ok()
                 .body(updatedArticle);
     }

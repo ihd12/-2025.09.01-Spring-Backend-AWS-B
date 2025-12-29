@@ -8,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -58,11 +59,17 @@ public class Article {
         this.content = content;
     }
     public void changeImage(List<FileNameUtil> fileList){
+        // DB에 저장된 ord의 가장 큰 수를 저장
+        int lastNum = images.stream()
+                .map(ArticleImage::getOrd) // 각각의 ord데이터만 꺼내어 사용
+                .max(Comparator.naturalOrder()) // ord데이터 중 가장 큰수를 찾기
+                .orElse(0); // 에러가 있다면 0을 반환 없다면 가장 큰 수를 반환
         for(FileNameUtil file : fileList){
+            lastNum++;
             ArticleImage articleImage = ArticleImage.builder()
                     .uuid(file.getNewFileName())
                     .fileName(file.getOriginalFileName())
-                    .ord(images.size())
+                    .ord(lastNum)
                     .article(this) // article_id 열 저장
                     .build();
             // images에 새로운 파일을 저장

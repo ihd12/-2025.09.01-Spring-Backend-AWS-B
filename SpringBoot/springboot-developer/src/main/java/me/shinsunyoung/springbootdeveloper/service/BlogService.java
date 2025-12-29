@@ -5,11 +5,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.shinsunyoung.springbootdeveloper.domain.Article;
 import me.shinsunyoung.springbootdeveloper.domain.ArticleImage;
-import me.shinsunyoung.springbootdeveloper.dto.AddArticleRequest;
-import me.shinsunyoung.springbootdeveloper.dto.UpdateArticleRequest;
+import me.shinsunyoung.springbootdeveloper.dto.*;
 import me.shinsunyoung.springbootdeveloper.repository.ArticleImageRepository;
 import me.shinsunyoung.springbootdeveloper.repository.BlogRepository;
 import me.shinsunyoung.springbootdeveloper.util.FileNameUtil;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -50,6 +50,10 @@ public class BlogService {
         // Article 테이블의 전체 데이터 조회
         return blogRepository.findAll();
     }
+    public PageResponseDTO<ArticleListViewResponse> searchArticle(PageRequestDTO pageRequestDTO){
+        return blogRepository.search(pageRequestDTO);
+    }
+
     public Article findById(long id){
         // findById의 반환값이 Optional<Article>로 되어있기 때문에
         // Article로 변환하려면 orElseThrow나 get을 사용하여 변환해야함

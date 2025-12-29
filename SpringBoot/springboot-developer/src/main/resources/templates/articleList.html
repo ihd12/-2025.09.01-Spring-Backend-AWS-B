@@ -28,7 +28,19 @@
                 onclick="location.href='/login'">로그인</button>
         <button sec:authorize="hasRole('ADMIN')" type="button" class="btn btn-danger">관리자만 보이는 버튼</button>
         <button sec:authorize="hasRole('USER')" type="button" class="btn btn-danger">일반 사용자만 보이는 버튼</button>
-        <div class="row-6" th:each="item : ${articles}">
+        <form action="/articles" method="get">
+            <input type="hidden" name="page" th:value="${pageRequestDTO.page}"/>
+            <div class="mb-3">
+                <select name="types">
+                    <option value="t" th:selected="${pageRequestDTO.types == 't'}">제목</option>
+                    <option value="c" th:selected="${pageRequestDTO.types == 'c'}">내용</option>
+                    <option value="tc" th:selected="${pageRequestDTO.types == 'tc'}">제목+내용</option>
+                </select>
+                <input type="text" name="keyword" th:value="${pageRequestDTO.keyword}"/>
+                <input type="submit" value="검색"/>
+            </div>
+        </form>
+        <div class="row-6" th:each="item : ${articles.dtoList}">
             <div class="card">
                 <div class="card-header" th:text="${item.id}"></div>
                 <div class="card-body">
@@ -39,7 +51,20 @@
             </div>
             <br>
         </div>
-
+        <div class="float-end">
+            <ul class="pagination flex-wrap">
+                <li th:if="${articles.prev}" class="page-item">
+                    <a class="page-link" th:data-num="${articles.start -1}">이전</a>
+                </li>
+                <li th:each="num : ${#numbers.sequence(articles.start,articles.end)}"
+                    th:class="page-item" th:classappend="${num == articles.page} ? 'active'">
+                    <a class="page-link" th:data-num="${num}">[[${num}]]</a>
+                </li>
+                <li th:if="${articles.next}" class="page-item">
+                    <a class="page-link" th:data-num="${articles.end+1}">다음</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
