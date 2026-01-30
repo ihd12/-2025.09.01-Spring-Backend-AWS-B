@@ -1,0 +1,20 @@
+1. React 프로젝트 생성
+npm create vite@latest --template typescript
+
+2. React 실행 명령어
+프로젝트 설치 위치에서 터미널열기
+npm run dev : 개발자 모드로 프로젝트 실행
+npm run build : 운영 환경의 프로젝트 실행파일 생성
+npm run preview : 운영 환경 실행
+
+3. 라이브러리 설치하기
+npm i chance luxon
+npm i -D @types/chance @types/luxon
+npm i react-router-dom
+npm i @fontsource/material-icons
+
+npm i -D postcss autoprefixer tailwindcss
+pakage.json의 tailwindcss 버전을 3.4.1 로 변경
+npx tailwindcss init -p
+npm i -D daisyui
+npm i -D @tailwindcss/line-clamp
