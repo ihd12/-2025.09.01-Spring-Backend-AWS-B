@@ -1,8 +1,39 @@
+import { useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts";
+import { useToggle } from "../../hooks";
+import { Button, Modal, ModalAction, ModalContent } from "../../theme/daisyui";
+
 export default function Logout() {
+  const [open, toggleOpen] = useToggle(true);
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+  const onAccept = useCallback(() => {
+    logout(() => {
+      toggleOpen();
+      navigate("/");
+    });
+  }, [navigate, toggleOpen, logout]);
+  const onCancel = useCallback(() => {
+    toggleOpen();
+    navigate(-1);
+  }, [navigate, toggleOpen]);
   return (
-    <section className="mt-4">
-      <h2 className="text-5xl font-bold text-center">CopyMe</h2>
-      <div className="mt-4"></div>
-    </section>
+    <Modal open={open}>
+      <ModalContent
+        closeIconClassName="btn-primary btn-outline"
+        onCloseIconClicked={onCancel}
+      >
+        <p className="text-xl text-center">Are you sure you want to log out?</p>
+        <ModalAction>
+          <Button className="btn-primary btn-sm" onClick={onAccept}>
+            LOGOUT
+          </Button>
+          <Button className="btn-secondary btn-sm" onClick={onCancel}>
+            CANCEL
+          </Button>
+        </ModalAction>
+      </ModalContent>
+    </Modal>
   );
 }

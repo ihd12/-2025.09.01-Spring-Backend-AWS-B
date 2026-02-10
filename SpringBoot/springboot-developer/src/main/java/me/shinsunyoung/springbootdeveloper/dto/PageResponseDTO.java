@@ -38,6 +38,5 @@ public class PageResponseDTO<T> {
         this.end = Math.min(this.end, this.totalPages);
         this.prev = this.start > 1;
         this.next = totalElements > (long) this.end * this.size;
-
     }
 }

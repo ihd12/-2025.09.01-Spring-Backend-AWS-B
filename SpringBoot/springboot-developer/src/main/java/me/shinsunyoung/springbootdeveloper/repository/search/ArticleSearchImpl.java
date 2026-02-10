@@ -29,7 +29,10 @@ public class ArticleSearchImpl extends QuerydslRepositorySupport implements Arti
         JPQLQuery<Article> query = from(qArticle); // SELECT * FROM article
         // WHERE절 설정
         String[] types = pageRequestDTO.splitTypes();
-        if(types!=null && types.length>0){
+        String keyword = pageRequestDTO.getKeyword();
+//        isEmpty() : "" 문자열이 없을때만 true
+//        isBlank() : "", "  " 문자열이 없거나 스페이스가 들어있을때 true
+        if(types!=null && types.length>0 && keyword!=null &&!keyword.isBlank()){
             // AND,OR 기호를 붙여 WHERE을 만들어야하는 경우 사용
             BooleanBuilder builder = new BooleanBuilder();
             for(String type : types){
@@ -37,17 +40,20 @@ public class ArticleSearchImpl extends QuerydslRepositorySupport implements Arti
                     case "t" -> {
                         // types에 t가 있는 경우 title로 검색조건 추가
                         builder.or(qArticle.title.contains(pageRequestDTO.getKeyword()));
+                        // title LIKE '%keyword%'
                     }
                     case "c" -> {
                         // types에 c가 있는 경우 content로 검색조건 추가
                         builder.or(qArticle.content.contains(pageRequestDTO.getKeyword()));
+                        // content LIKE '%keyword%'
                     }
                 }
             }
             // 반복문이 끝나는 부분에 booleanBuilder설정
             query.where(builder); // booleanBuilder에 있는 조건문이 query에 설정됨
+            // query.where은 AND조건으로 동작함
         }
-        
+
         // pageable에 설정한 페이지번호,출력개수,정렬을 적용하여 query문을 변경
         this.getQuerydsl().applyPagination(pageRequestDTO.getPageable(), query);
         // sql실행 후 list에 저장

@@ -23,7 +23,8 @@ export const useCards = (listid: UUID) => {
     dispatch(LC.appendCardidToListid({ listid, cardid: card.uuid }));
   }, [dispatch, listid]);
   const onRemoveCard = useCallback(
-    (uuid: UUID) => () => {
+    (uuid: UUID) => (e: React.MouseEvent) => {
+      e.stopPropagation();
       dispatch(C.removeCard(uuid));
       dispatch(LC.removeCardidFromListid({ listid, cardid: uuid }));
     },

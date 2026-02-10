@@ -31,13 +31,17 @@ public class BlogViewController {
         return "articleList";
     }
     @GetMapping("/articles/{id}")
-    public String findArticle(@PathVariable("id") long id, Model model){
+    public String findArticle(@PathVariable("id") long id,
+                              PageRequestDTO pageRequestDTO,
+                              Model model){
         Article article = blogService.findById(id);
         model.addAttribute("article", new ArticleViewResponse(article));
         return "article";
     }
     @GetMapping("/new-article")
-    public String newArticle(@RequestParam(required = false) Long id,Model model){
+    public String newArticle(@RequestParam(required = false) Long id,
+                             PageRequestDTO pageRequestDTO,
+                             Model model){
         if(id == null){
             // 글 추가
             model.addAttribute("article", new ArticleViewResponse());

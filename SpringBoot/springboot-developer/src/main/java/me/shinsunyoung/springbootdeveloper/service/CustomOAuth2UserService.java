@@ -38,6 +38,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 // 소셜 로그인 처음 사용자인 경우
                 user = userRepository.save(User.builder()
                             .email(nickName)
+                            .nickname(nickName)
                             .password(passwordEncoder.encode("1234"))
                             .auth("user")
                             .social(true)
@@ -46,7 +47,19 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             userSecurityDTO = new UserSecurityDTO(user, props);
         }else if(company.equals("google")){
             // 구글 소셜 로그인 처리
+            Map<String,Object> attributes = oAuth2User.getAttributes();
+            String email = (String) attributes.get("email");
+            String name = (String)attributes.get("name");
+            User user = userRepository.findByEmailAndSocial(name, true)
+                    .map(entity -> entity.update(name))
+                    .orElse(User.builder()
+                            .email(email).nickname(name)
+                            .password(passwordEncoder.encode("1234"))
+                            .auth("user").social(true).build());
+            User savedUser = userRepository.save(user);
+            userSecurityDTO = new UserSecurityDTO(savedUser, attributes);
         }
         return userSecurityDTO;
     }
+
 }

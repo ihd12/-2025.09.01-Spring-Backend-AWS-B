@@ -1,6 +1,7 @@
 import { useCallback, useState, type ChangeEvent } from "react";
 import * as D from "../../data";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts";
 type SignUpFormType = Record<"email" | "password" | "confirmPassword", string>;
 const initialFormState = {
   email: D.randomEmail(),

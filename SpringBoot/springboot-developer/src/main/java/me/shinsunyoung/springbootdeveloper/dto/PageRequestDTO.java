@@ -41,7 +41,7 @@ public class PageRequestDTO {
         if(types!=null && splitTypes().length>0){
             builder.append("&types="+types);
         }
-        if(keyword!=null && keyword.length()>0){
+        if(keyword!=null){
             try{
                 builder.append("&keyword="+ URLEncoder.encode(keyword,"UTF-8"));
             }catch(Exception e){
