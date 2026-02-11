@@ -19,9 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AndRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.util.AntPathMatcher;
 
 @RequiredArgsConstructor
 @Configuration
@@ -34,7 +32,7 @@ public class WebOAuthSecurityConfig {
     @Bean
     public WebSecurityCustomizer configure(){
         return (web) -> web.ignoring()
-                .requestMatchers(PathRequest.toH2Console())
+//                .requestMatchers(PathRequest.toH2Console())
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
                 .requestMatchers("/static/**");
     }
@@ -46,7 +44,8 @@ public class WebOAuthSecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable)
                 .logout(AbstractHttpConfigurer::disable)
                 // 세션을 생성하지 않도록 설정
-                .sessionManagement(management->management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(management
+                        ->management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 // 필터 추가
                 // addFilterBefore(직접 생성한 필터, 기존에 존재하던 필터)
                 .addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)

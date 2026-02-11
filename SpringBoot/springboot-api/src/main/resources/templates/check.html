@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>PASS 테스트</title>
+</head>
+
+<body class="">
+
+<div>
+    <button th:onclick="openPass()">본인인증 열기</button>
+</div>
+
+<!-- 본인인증 form chk -->
+<form name="form_chk" method="post">
+    <input type="hidden" name="m" value="checkplusService">
+    <input type="hidden" name="EncodeData" th:value="${sEncData}">
+</form>
+
+<script th:inline="javascript">
+    /* 본인 인증 모듈 실행 */
+    function openPass() {
+        window.open('', 'popupChk',
+            'width=500, height=550, top=100, left=100, fullscreen=no, menubar=no, ' +
+            'status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no');
+        document.form_chk.action = "https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb";
+        document.form_chk.target = "popupChk";
+        document.form_chk.submit();
+    }
+
+</script>
+</body>
+</html>
