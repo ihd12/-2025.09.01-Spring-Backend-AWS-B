@@ -24,7 +24,7 @@ export default function Signup() {
     }
   };
   return (
-    <div className="gradient-custom">
+    <div className="gradient-custom container-fluid">
       <section className="d-flex vh-100">
         <div className="container-fluid row justify-content-center align-content-center">
           <div className="card bg-dark" style={{ borderRadius: "1rem" }}>

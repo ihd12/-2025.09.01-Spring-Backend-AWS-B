@@ -80,7 +80,9 @@ public class BlogService {
         // 데이터 수정하기
         article.update(request.getTitle(), request.getContent());
         // 이미지 테이블에 추가
-        article.changeImage(fileList);
+        if(fileList != null && !fileList.isEmpty()) {
+            article.changeImage(fileList);
+        }
         return article;
     }
     // 테이블에서 이미지를 삭제하는 메서드
