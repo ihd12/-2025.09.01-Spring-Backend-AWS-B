@@ -88,4 +88,11 @@ public class BlogApiController {
         }
         return ResponseEntity.ok().build();
     }
+    @GetMapping("/api/articleList")
+    public ResponseEntity<PageResponseDTO<ArticleListViewResponse>> searchArticles(
+            PageRequestDTO pageRequestDTO){
+        PageResponseDTO<ArticleListViewResponse> articleList =
+                blogService.searchArticle(pageRequestDTO);
+        return ResponseEntity.ok().body(articleList);
+    }
 }

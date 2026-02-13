@@ -53,9 +53,12 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             User user = userRepository.findByEmailAndSocial(email, true)
                     .map(entity -> entity.update(name))
                     .orElse(User.builder()
-                            .email(email).nickname(name)
+                            .email(email)
+                            .nickname(name)
                             .password(passwordEncoder.encode("1234"))
-                            .auth("user").social(true).build());
+                            .auth("user")
+                            .social(true)
+                            .build());
             User savedUser = userRepository.save(user);
             userSecurityDTO = new UserSecurityDTO(savedUser, attributes);
         }
